@@ -87,8 +87,92 @@ const historicalPeriods = [
   { name: "令和", yearRange: "2019-现在", characteristics: ["调和", "希望"], namingTrends: ["和谐名", "希望相关"], socialStructure: "少子高龄化社会", namingRules: ["现代名字常用西方名字", "避讳天皇名讳"], namingTaboos: ["避免使用不吉利的字，如'死'、'病'"] }
 ];
 
-// 当前语言
-let currentLanguage = 'zh';
+// 在文件顶部添加这个全局变量
+let currentLanguage = 'en';
+
+// 更新 switchLanguage 函数
+function switchLanguage(lang) {
+  currentLanguage = lang;
+  const translations = {
+    en: {
+      generateButton: "Generate Names",
+      generateRandomButton: "Generate Random Name",
+      // ... 其他英语翻译 ...
+    },
+    zh: {
+      generateButton: "生成名字",
+      generateRandomButton: "生成随机名字",
+      // ... 其他中文翻译 ...
+    },
+    ja: {
+      generateButton: "名前を生成",
+      generateRandomButton: "ランダムな名前を生成",
+      // ... 其他日语翻译 ...
+    }
+  };
+
+  const translation = translations[lang];
+  if (translation) {
+    // 更新按钮文本
+    updateButtonText('generate', translation.generateButton);
+    updateButtonText('generate-random', translation.generateRandomButton);
+
+    // ... 其他元素的更新 ...
+  }
+}
+
+// 添加这个新函数来更新按钮文本
+function updateButtonText(buttonId, text) {
+  const button = document.getElementById(buttonId);
+  if (button) {
+    button.textContent = text;
+  } else {
+    console.warn(`Button with id "${buttonId}" not found`);
+  }
+}
+
+// 在 DOMContentLoaded 事件监听器中添加初始化语言的调用
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM内容加载完成");
+  
+  // 初始化语言为英语
+  switchLanguage('en');
+  
+  const generateButton = document.getElementById('generate');
+  const generateRandomButton = document.getElementById('generate-random');
+  
+  if (generateButton) {
+    generateButton.addEventListener('click', generateNames);
+  } else {
+    console.error("找不到 generate 按钮");
+  }
+  
+  if (generateRandomButton) {
+    generateRandomButton.addEventListener('click', generateRandomName);
+  } else {
+    console.error("找不到 generate-random 按钮");
+  }
+  
+  // 生成初始名字列表
+  generateNames();
+});
+
+// 添加这个新函数来生成随机名字
+function generateRandomName() {
+  const gender = Math.random() < 0.5 ? 'male' : 'female';
+  const name = generateFullJapaneseName(gender, {});
+  displayGeneratedName(name);
+}
+
+// 添加 displayGeneratedName 函数
+function displayGeneratedName(name) {
+  const nameList = document.getElementById('name-list');
+  nameList.innerHTML = '';
+  const li = document.createElement('li');
+  li.textContent = name.kanji;
+  li.onclick = () => showNameDetails(name);
+  nameList.appendChild(li);
+}
 
 // 改进名字选择逻辑
 function selectNameBasedOnPeriod(nameDatabase, period, options = {}) {
@@ -144,10 +228,10 @@ function analyzeNameMeaning(surname, givenName) {
   const surnameMeaning = surname.meaning;
   const givenNameMeaning = givenName.meaning;
   
-  return `姓氏"${surname.kanji}"的含义是${surnameMeaning}。这个姓氏起源于${surname.origin}，在${surname.region}地区较为常见。
-          名字"${givenName.kanji}"的含义是${givenNameMeaning}。这个名字具有${givenName.characteristics.join('、')}的特点，
-          在${givenName.era}时代比较流行，通常用于${givenName.socialClass}阶层。
-          组合起来，这个名字可能象征着${surname.origin}背景下具有${givenName.characteristics.join('和')}品质的人。`;
+  return `Surname "${surname.kanji}" means ${surnameMeaning}. This surname originates from ${surname.origin} and is common in the ${surname.region} region.
+           Given name "${givenName.kanji}" means ${givenNameMeaning}. This name has the characteristics of ${givenName.characteristics.join(', ')}.
+           In the ${givenName.era} era, it was popular among the ${givenName.socialClass} class.
+           Combined, this name may symbolize a person with ${givenName.characteristics.join(' and ')} qualities from a ${surname.origin} background.`;
 }
 
 // 名字组合逻辑
@@ -184,7 +268,7 @@ function generateFullJapaneseName(gender, options = {}) {
   console.log("选择的名字:", givenName);
 
   const fullNameKanji = `${surname.kanji} ${givenName.kanji}`;
-  const fullNameRomaji = `${improvedRomajiConversion(givenName.kanji)} ${improvedRomajiConversion(surname.kanji)}`;
+  const fullNameRomaji = `${surname.romaji} ${givenName.romaji}`;
   const nameMeaning = analyzeNameMeaning(surname, givenName);
 
   return {
@@ -192,16 +276,17 @@ function generateFullJapaneseName(gender, options = {}) {
     romaji: fullNameRomaji,
     meaning: nameMeaning,
     surname: surname.kanji,
-    givenName: givenName.kanji,
-    period: period.name,
     surnameOrigin: surname.origin,
+    givenName: givenName.kanji,
     givenNamePopularity: givenName.popularity,
+    period: period.name,
     region: surname.region,
     socialClass: givenName.socialClass,
-    historicalContext: `${period.name}时代（${period.yearRange}）的特征是${period.characteristics.join('、')}。
-                        当时的社会结构是${period.socialStructure}，取名趋势是${period.namingTrends.join('、')}。
-                        命名规则包括：${period.namingRules.join('；')}。
-                        命名禁忌包括：${period.namingTaboos.join('；')}。`
+    historicalContext: `${period.name} period (${period.yearRange}) is characterized by ${period.characteristics.join(', ')}. 
+                        The social structure was ${period.socialStructure}, and naming trends included ${period.namingTrends.join(', ')}. 
+                        Naming rules included: ${period.namingRules.join('; ')}. 
+                        Naming taboos included: ${period.namingTaboos.join('; ')}.`,
+    culturalSignificance: givenName.culturalSignificance || surname.culturalSignificance || null
   };
 }
 
@@ -213,30 +298,54 @@ function getJapaneseNames(gender, count, options = {}) {
   return names;
 }
 
+// 添加动漫角色名字生成功能
+function generateAnimeName(gender) {
+  const animeTropes = ["元气", "天才", "神秘", "英雄", "反派"];
+  const name = generateFullJapaneseName(gender, { popularity: "高" });
+  const trope = animeTropes[Math.floor(Math.random() * animeTropes.length)];
+  return {
+    ...name,
+    animeCharacterType: trope
+  };
+}
+
+// 添加历史名人名字生成功能
+function generateHistoricalName(gender, period) {
+  return generateFullJapaneseName(gender, { period: period, socialClass: "上层" });
+}
+
+// 修改 generateNames 函数
 function generateNames() {
-  console.log("generateNames函数被调用");
+  console.log("generateNames function called");
   const gender = document.getElementById('gender').value;
   const period = document.getElementById('period').value;
-  console.log(`选择的性别: ${gender}, 选择的时期: ${period}`);
+  const isAnime = document.getElementById('anime-checkbox').checked;
+  const isHistorical = document.getElementById('historical-checkbox').checked;
+  console.log(`Selected gender: ${gender}, period: ${period}, anime: ${isAnime}, historical: ${isHistorical}`);
   
-  // 显示加载动画
   const nameList = document.getElementById('name-list');
-  nameList.innerHTML = '<li>加载中...</li>';
+  nameList.innerHTML = '<li>Loading...</li>';
   
   setTimeout(() => {
-    const names = getJapaneseNames(gender, 5, { period: period });
-    console.log("生成的名字:", names);
+    let names;
+    if (isAnime) {
+      names = Array(5).fill().map(() => generateAnimeName(gender));
+    } else if (isHistorical) {
+      names = Array(5).fill().map(() => generateHistoricalName(gender, period));
+    } else {
+      names = getJapaneseNames(gender, 5, { period: period });
+    }
+    console.log("Generated names:", names);
     
     nameList.innerHTML = '';
-    
     names.forEach(name => {
       const li = document.createElement('li');
       li.textContent = name.kanji;
       li.onclick = () => showNameDetails(name);
       nameList.appendChild(li);
     });
-    console.log("名字列表已更新");
-  }, 1000); // 模拟加载时间
+    console.log("Name list updated");
+  }, 1000);
 }
 
 function showNameDetails(name) {
@@ -250,16 +359,6 @@ function showNameDetails(name) {
   modal.style.display = 'block';
   
   const translations = {
-    zh: {
-      nameKanji: "全名（汉字）",
-      nameRomaji: "全名（罗马字）",
-      nameMeaning: "名字寓意",
-      nameSurname: "姓氏",
-      nameGiven: "名",
-      namePeriod: "历史时期",
-      historicalContext: "历史背景",
-      culturalSignificance: "文化意义"
-    },
     en: {
       nameKanji: "Full Name (Kanji)",
       nameRomaji: "Full Name (Romaji)",
@@ -268,7 +367,31 @@ function showNameDetails(name) {
       nameGiven: "Given Name",
       namePeriod: "Historical Period",
       historicalContext: "Historical Context",
-      culturalSignificance: "Cultural Significance"
+      culturalSignificance: "Cultural Significance",
+      animeCharacter: "Anime Character",
+      historicalFigure: "Historical Figure",
+      relatedContent: "Related Content",
+      japaneseNameMeanings: "Japanese Name Meanings",
+      japaneseNamingCustoms: "Japanese Naming Customs",
+      popularJapaneseNames: "Popular Japanese Names",
+      animeCharacterNames: "Anime Character Names"
+    },
+    zh: {
+      nameKanji: "全名（汉字）",
+      nameRomaji: "全名（罗马字）",
+      nameMeaning: "名字寓意",
+      nameSurname: "姓氏",
+      nameGiven: "名",
+      namePeriod: "历史时期",
+      historicalContext: "历史背景",
+      culturalSignificance: "文化意义",
+      animeCharacter: "动漫角色",
+      historicalFigure: "历史名人",
+      relatedContent: "相关内容",
+      japaneseNameMeanings: "日本名字的含义",
+      japaneseNamingCustoms: "日本的命名习俗",
+      popularJapaneseNames: "流行的日本名字",
+      animeCharacterNames: "动漫角色名字大全"
     },
     ja: {
       nameKanji: "フルネーム（漢字）",
@@ -278,7 +401,14 @@ function showNameDetails(name) {
       nameGiven: "名",
       namePeriod: "歴史的な時代",
       historicalContext: "歴史的背景",
-      culturalSignificance: "文化的意義"
+      culturalSignificance: "文化的意義",
+      animeCharacter: "アニメキャラクター",
+      historicalFigure: "歴史上の人物",
+      relatedContent: "関連コンテンツ",
+      japaneseNameMeanings: "日本の名前の意味",
+      japaneseNamingCustoms: "日本の命名習慣",
+      popularJapaneseNames: "人気の日本の名前",
+      animeCharacterNames: "アニメキャラクターの名前集"
     }
   };
 
@@ -288,11 +418,11 @@ function showNameDetails(name) {
     { id: 'name-kanji', label: translation.nameKanji, text: name.kanji },
     { id: 'name-romaji', label: translation.nameRomaji, text: name.romaji },
     { id: 'name-meaning', label: translation.nameMeaning, text: name.meaning },
-    { id: 'name-surname', label: translation.nameSurname, text: `${name.surname}（${name.surnameOrigin}）` },
-    { id: 'name-given', label: translation.nameGiven, text: `${name.givenName}（${name.givenNamePopularity}）` },
+    { id: 'name-surname', label: translation.nameSurname, text: `${name.surname} (${name.surnameOrigin})` },
+    { id: 'name-given', label: translation.nameGiven, text: `${name.givenName} (${name.givenNamePopularity})` },
     { id: 'name-period', label: translation.namePeriod, text: name.period },
     { id: 'historical-context', label: translation.historicalContext, text: name.historicalContext },
-    { id: 'name-cultural-significance', label: translation.culturalSignificance, text: name.culturalSignificance || '无可用信息' }
+    { id: 'name-cultural-significance', label: translation.culturalSignificance, text: name.culturalSignificance || 'No information available / 无可用信息 / 情報なし' }
   ];
 
   elements.forEach(({ id, label, text }) => {
@@ -300,7 +430,7 @@ function showNameDetails(name) {
     if (element) {
       const labelElement = element.previousElementSibling;
       if (labelElement) {
-        labelElement.textContent = label + ": ";
+        labelElement.textContent = `${label}: `;
       }
       element.textContent = text;
     } else {
@@ -313,71 +443,5 @@ function showNameDetails(name) {
 document.querySelector('.close').onclick = function() {
   document.getElementById('name-modal').style.display = 'none';
 };
-
-// 语言切换功能
-function switchLanguage(lang) {
-  currentLanguage = lang;
-  const translations = {
-    zh: {
-      title: "日本名字生成器",
-      subtitle: "获取authentic的日语名字，了解其含义和文化背景",
-      generatorTitle: "日本名字生成器",
-      genderLabel: "选择性别:",
-      periodLabel: "选择历史时期:",
-      generateButton: "生成名字",
-      generatedNamesTitle: "生成的名字:",
-      nameDetailsTitle: "名字详情"
-    },
-    en: {
-      title: "Japanese Name Generator",
-      subtitle: "Get authentic Japanese names, including kanji, romaji, and meaning explanations.",
-      generatorTitle: "Japanese Name Generator",
-      genderLabel: "Select Gender:",
-      periodLabel: "Select Historical Period:",
-      generateButton: "Generate Name",
-      generatedNamesTitle: "Generated Names:",
-      nameDetailsTitle: "Name Details"
-    },
-    ja: {
-      title: "日本の名前ジェネレーター",
-      subtitle: "本格的な日本の名前を取得し、その意味と文化的背景を理解する",
-      generatorTitle: "日本の名前ジェネレーター",
-      genderLabel: "性別を選択:",
-      periodLabel: "歴史的な時代を選択:",
-      generateButton: "名前を生成",
-      generatedNamesTitle: "生成された名前:",
-      nameDetailsTitle: "名前の詳細"
-    }
-  };
-
-  const translation = translations[lang];
-  if (translation) {
-    document.getElementById('title').textContent = translation.title;
-    document.getElementById('subtitle').textContent = translation.subtitle;
-    document.getElementById('generator-title').textContent = translation.generatorTitle;
-    document.getElementById('gender-label').textContent = translation.genderLabel;
-    document.getElementById('period-label').textContent = translation.periodLabel;
-    document.getElementById('generate').textContent = translation.generateButton;
-    document.getElementById('generated-names-title').textContent = translation.generatedNamesTitle;
-    document.getElementById('name-details-title').textContent = translation.nameDetailsTitle;
-  }
-}
-
-// 确保DOM加载完成后再添加事件监听器
-document.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM内容加载完成");
-  const generateButton = document.getElementById('generate');
-  if (!generateButton) {
-    console.error("找不到generate按钮");
-    return;
-  }
-  generateButton.addEventListener('click', () => {
-    console.log("生成按钮被点击");
-    generateNames();
-  });
-  console.log("事件监听器已添加");
-  // 页面加载时生成初始名字列表
-  generateNames();
-});
 
 console.log("脚本加载完成");

@@ -1,75 +1,168 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="免费日本名字生成器 - 获取authentic的日语名字，包含汉字、罗马字写法和含义解释。">
-  <meta name="keywords" content="日本名字生成器,Japanese name generator,日语名字,日本文化,名字含义,名字解释,日文名字,中文名字,英文名字">
+  <meta name="description" content="Free Japanese Name Generator - Get authentic Japanese names with kanji, romaji, and meaning explanations. Perfect for anime characters, novel writing, or Japanese language learning.">
+  <meta name="keywords" content="Japanese name generator, anime character names, Japanese culture, name meanings, Japanese names in English, random Japanese names, Japanese last names">
   <meta name="author" content="Your Name">
   <meta name="robots" content="index, follow">
-  <title>日本名字生成器 | 免费获取authentic日语名字</title>
+  <title>AI Japanese Name Generator | Create Authentic Japanese & Anime Names | AI-Names.app</title>
   <link rel="stylesheet" href="styles.css">
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
-      console.error("捕获到错误:", message, "在", source, "第", lineno, "行");
-      alert("抱歉，发生了一个错误。请查看控制台以获取更多信息。");
+      console.error("Error captured:", message, "in", source, "line", lineno);
+      alert("Sorry, an error occurred. Please check the console for more information.");
     }
   </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "日本名字生成器",
-    "url": "https://yourwebsite.com",
-    "description": "免费日本名字生成器 - 获取authentic的日语名字，包含汉字、罗马字写法和含义解释。",
-    "keywords": "日本名字生成器,Japanese name generator,日语名字,日本文化,名字含义,名字解释,日文名字,中文名字,英文名字",
-    "author": {
-      "@type": "Person",
-      "name": "Your Name"
+    "@type": "WebApplication",
+    "name": "AI Japanese Name Generator",
+    "url": "https://ai-names.app",
+    "description": "Free Japanese Name Generator - Get authentic Japanese names with kanji, romaji, and meaning explanations. Perfect for anime characters, novel writing, or Japanese language learning.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
     }
   }
   </script>
 </head>
 <body>
   <header>
-    <h1 id="title">日本名字生成器</h1>
-    <p id="subtitle">获取authentic的日语名字，了解其含义和文化背景</p>
+    <h1 id="title">AI Japanese Name Generator</h1>
+    <p id="subtitle">Create authentic Japanese names for personal use, characters, or anime</p>
     <div id="language-switcher">
-      <button onclick="switchLanguage('zh')">中文</button>
       <button onclick="switchLanguage('en')">English</button>
       <button onclick="switchLanguage('ja')">日本語</button>
+      <button onclick="switchLanguage('zh')">中文</button>
     </div>
   </header>
 
   <main>
-    <div id="name-generator">
-      <h2 id="generator-title">日本名字生成器</h2>
-      <label for="gender" id="gender-label">选择性别:</label>
-      <select id="gender">
-        <option value="male">男性</option>
-        <option value="female">女性</option>
-      </select>
-      <label for="period" id="period-label">选择历史时期:</label>
-      <select id="period">
-        <option value="">随机时期</option>
-        <option value="平安">平安时代</option>
-        <option value="鎌倉">镰仓时代</option>
-        <option value="室町">室町时代</option>
-        <option value="戦国">战国时代</option>
-        <option value="江戸">江户时代</option>
-        <option value="明治">明治时代</option>
-        <option value="大正">大正时代</option>
-        <option value="昭和">昭和时代</option>
-        <option value="平成">平成时代</option>
-        <option value="令和">令和时代</option>
-      </select>
-      <button id="generate">生成名字</button>
-    </div>
+    <section id="name-generator">
+      <h2 id="generator-title">Japanese Name Generator</h2>
+      <div class="generator-controls">
+        <label for="gender" id="gender-label">Select Gender:</label>
+        <select id="gender">
+          <option value="male">Male / 男性</option>
+          <option value="female">Female / 女性</option>
+        </select>
+        <label for="period" id="period-label">Select Historical Period:</label>
+        <select id="period">
+          <option value="">Random Period / 随机时期</option>
+          <option value="平安">Heian / 平安时代</option>
+          <option value="鎌倉">Kamakura / 镰仓时代</option>
+          <option value="室町">Muromachi / 室町时代</option>
+          <option value="戦国">Sengoku / 战国时代</option>
+          <option value="江戸">Edo / 江户时代</option>
+          <option value="明治">Meiji / 明治时代</option>
+          <option value="大正">Taisho / 大正时代</option>
+          <option value="昭和">Showa / 昭和时代</option>
+          <option value="平成">Heisei / 平成时代</option>
+          <option value="令和">Reiwa / 令和时代</option>
+        </select>
+        <label for="anime-checkbox">
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">Anime Character Name</span>
+        </label>
+        <label for="historical-checkbox">
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">Historical Figure Name</span>
+        </label>
+        <button id="generate">Generate Names</button>
+        <button id="generate-random">Generate Random Name</button>
+      </div>
+    </section>
 
-    <div id="name-display">
-      <h3 id="generated-names-title">生成的名字:</h3>
+    <section id="name-display">
+      <h3 id="generated-names-title">Generated Names:</h3>
       <ul id="name-list"></ul>
-    </div>
+    </section>
+
+    <section id="about-japanese-names">
+      <h2>About Japanese Names</h2>
+      <p>Japanese names typically consist of a surname and a given name. The surname comes first, followed by the given name. Japanese names often carry deep cultural and historical significance, reflecting Japanese traditions and values.</p>
+      <h3>Characteristics of Japanese Names</h3>
+      <ul>
+        <li>Written using kanji (Chinese characters) and kana (hiragana or katakana)</li>
+        <li>Name meanings are often related to nature, virtues, or auspicious concepts</li>
+        <li>Naming trends vary across different historical periods</li>
+        <li>Surnames reflect family history and geographical origins</li>
+      </ul>
+    </section>
+
+    <section id="use-cases">
+      <h2>Uses for the Japanese Name Generator</h2>
+      <ul>
+        <li>Create authentic Japanese names for anime or manga characters</li>
+        <li>Name Japanese characters in novels or stories</li>
+        <li>Practice reading and writing Japanese names while learning the language</li>
+        <li>Understand Japanese culture and naming traditions</li>
+      </ul>
+    </section>
+
+    <section id="related-content">
+      <h2>Related Content</h2>
+      <div class="content-cards">
+        <div class="content-card" id="japanese-name-meanings">
+          <h3>Japanese Name Meanings</h3>
+          <p>Japanese names are rich with meaning and cultural significance. For example:</p>
+          <ul>
+            <li><strong>Akira (明):</strong> "Bright" or "Clear," often given to children hoped to be intelligent and insightful.</li>
+            <li><strong>Hana (花):</strong> "Flower," symbolizing beauty and delicacy.</li>
+            <li><strong>Hiroshi (寛):</strong> "Generous" or "Tolerant," reflecting desired personality traits.</li>
+            <li><strong>Yuki (雪):</strong> "Snow," evoking purity and beauty.</li>
+          </ul>
+          <p>Names often combine multiple kanji to create unique meanings, reflecting parents' hopes and values for their children.</p>
+        </div>
+        <div class="content-card" id="japanese-naming-customs">
+          <h3>Japanese Naming Customs</h3>
+          <p>Japanese naming customs have evolved over time:</p>
+          <ul>
+            <li><strong>Historical:</strong> Names were often based on birth order or social status.</li>
+            <li><strong>Modern:</strong> Parents choose names based on meaning, sound, or family traditions.</li>
+            <li><strong>Legal:</strong> Japan has regulations on which kanji can be used in names.</li>
+            <li><strong>Trends:</strong> Name popularity changes with societal shifts and pop culture influences.</li>
+          </ul>
+          <p>Interestingly, some Japanese people have a "true name" (本名, honnmyou) for legal documents and a "common name" (通称, tsūshō) for daily use.</p>
+        </div>
+        <div class="content-card" id="popular-japanese-names">
+          <h3>Popular Japanese Names</h3>
+          <p>Popular names in Japan often reflect current trends and values:</p>
+          <h4>Top names for boys in recent years:</h4>
+          <ol>
+            <li>蓮 (Ren) - "Lotus"</li>
+            <li>湊 (Minato) - "Harbor"</li>
+            <li>陽翔 (Haruto) - "Sun, Flying"</li>
+          </ol>
+          <h4>Top names for girls in recent years:</h4>
+          <ol>
+            <li>紬 (Tsumugi) - "Pongee" (a type of silk)</li>
+            <li>凛 (Rin) - "Dignified"</li>
+            <li>芽依 (Mei) - "Sprout, Reliant"</li>
+          </ol>
+          <p>These names often combine traditional elements with modern aesthetics, reflecting Japan's balance of heritage and progress.</p>
+        </div>
+        <div class="content-card" id="anime-character-names">
+          <h3>Anime Character Names</h3>
+          <p>Anime creators often use clever naming conventions:</p>
+          <ul>
+            <li><strong>Symbolism:</strong> Names that represent character traits or story themes.</li>
+            <li><strong>Wordplay:</strong> Using puns or multiple meanings in kanji.</li>
+            <li><strong>Cultural References:</strong> Names inspired by historical figures or mythology.</li>
+          </ul>
+          <p>Examples:</p>
+          <ul>
+            <li><strong>Light Yagami (夜神月):</strong> From Death Note, meaning "Night God" and "Moon," symbolizing his god-like power over death.</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> From One Piece, with "Monkey" suggesting playfulness and agility.</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> Real name Usagi (うさぎ), meaning "rabbit," referencing the Moon Rabbit in East Asian folklore.</li>
+          </ul>
+          <p>These creative names add depth to characters and often provide clues about their roles or destinies in the story.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- 模态框 -->
     <div id="name-modal" class="modal">
@@ -89,9 +182,9 @@
   </main>
 
   <footer>
-    <p>© 2023 日本名字生成器. 保留所有权利。</p>
+    <p>© 2023 AI Japanese Name Generator. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" crossorigin="anonymous"></script>
 </body>
 </html>
