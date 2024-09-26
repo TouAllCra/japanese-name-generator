@@ -1,167 +1,1259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free Japanese Name Generator - Get authentic Japanese names with kanji, romaji, and meaning explanations. Perfect for anime characters, novel writing, or Japanese language learning.">
-  <meta name="keywords" content="Japanese name generator, anime character names, Japanese culture, name meanings, Japanese names in English, random Japanese names, Japanese last names">
-  <meta name="author" content="Your Name">
+  <meta name="description" content="使用AI日本名字生成器创建真实的日本名字，包含汉字、罗马字和含义解释。50000+日本名字库，适用于动漫角色、小说创作、日语学习。每周更新新名字。">
+  <meta name="keywords" content="日本名字生成器, 动漫角色名字, 日本文化, 名字含义, 英文日本名字, 随机日本名字, 日本姓氏, AI名字生成">
+  <meta name="author" content="AI日本名字生成器">
   <meta name="robots" content="index, follow">
-  <title>AI Japanese Name Generator | Create Authentic Japanese & Anime Names | AI-Names.app</title>
+  <title>AI日本名字生成器 | 创建真实日本名字和动漫角色名 | 50000+名字库</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="alternate" hreflang="en" href="https://ai-names.app/en/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-names.app/ja/" />
+  <link rel="alternate" hreflang="zh" href="https://ai-names.app/" />
+  <link rel="canonical" href="https://ai-names.app/" />
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       console.error("Error captured:", message, "in", source, "line", lineno);
-      alert("Sorry, an error occurred. Please check the console for more information.");
+      alert("抱歉，发生了错误。请查看控制台以获取更多信息。");
     }
   </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "AI Japanese Name Generator",
+    "name": "AI日本名字生成器",
     "url": "https://ai-names.app",
-    "description": "Free Japanese Name Generator - Get authentic Japanese names with kanji, romaji, and meaning explanations. Perfect for anime characters, novel writing, or Japanese language learning.",
+    "description": "免费的AI日本名字生成器，提供50000+真实日本名字，包含汉字、罗马字和含义解释。适用于动漫角色、小说创作或日语学习。",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
       "price": "0"
-    }
+    },
+    "featureList": [
+      "生成真实日本名字",
+      "提供汉字和罗马字写法",
+      "解释名字含义",
+      "支持动漫角色名字生成",
+      "每周更新新名字"
+    ]
   }
   </script>
 </head>
 <body>
   <header>
-    <h1 id="title">AI Japanese Name Generator</h1>
-    <p id="subtitle">Create authentic Japanese names for personal use, characters, or anime</p>
-    <div id="language-switcher">
-      <button onclick="switchLanguage('en')">English</button>
-      <button onclick="switchLanguage('ja')">日本語</button>
-      <button onclick="switchLanguage('zh')">中文</button>
-    </div>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="AI日本名字生成器" width="150" height="50">
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/about-japanese-names.html">关于日本名字</a></li>
+        <li><a href="/japanese-name-meanings.html">日本名字含义</a></li>
+        <li><a href="/anime-character-names.html">动漫角色名字</a></li>
+      </ul>
+      <div id="language-switcher">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+      </div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <section id="name-generator">
-      <h2 id="generator-title">Japanese Name Generator</h2>
+    <section id="hero" class="hero">
+      <h1>AI日本名字生成器</h1>
+      <p>创建独特的日本名字，适用于个人使用、角色创作或动漫</p>
+      <a href="#name-generator" class="cta-button">开始生成名字</a>
+    </section>
+
+    <section id="name-generator" class="name-generator">
+      <h2>日本名字生成器</h2>
       <div class="generator-controls">
-        <label for="gender" id="gender-label">Select Gender:</label>
+        <label for="gender" id="gender-label">选择性别：</label>
         <select id="gender">
-          <option value="male">Male / 男性</option>
-          <option value="female">Female / 女性</option>
+          <option value="male">男性</option>
+          <option value="female">女性</option>
         </select>
-        <label for="period" id="period-label">Select Historical Period:</label>
+        <label for="period" id="period-label">选择历史时期：</label>
         <select id="period">
-          <option value="">Random Period / 随机时期</option>
-          <option value="平安">Heian / 平安时代</option>
-          <option value="鎌倉">Kamakura / 镰仓时代</option>
-          <option value="室町">Muromachi / 室町时代</option>
-          <option value="戦国">Sengoku / 战国时代</option>
-          <option value="江戸">Edo / 江户时代</option>
-          <option value="明治">Meiji / 明治时代</option>
-          <option value="大正">Taisho / 大正时代</option>
-          <option value="昭和">Showa / 昭和时代</option>
-          <option value="平成">Heisei / 平成时代</option>
-          <option value="令和">Reiwa / 令和时代</option>
+          <option value="">随机时期</option>
+          <option value="平安">平安时代</option>
+          <option value="鎌倉">镰仓时代</option>
+          <option value="室町">室町时代</option>
+          <option value="戦国">战国时代</option>
+          <option value="江戸">江户时代</option>
+          <option value="明治">明治时代</option>
+          <option value="大正">大正时代</option>
+          <option value="昭和">昭和时代</option>
+          <option value="平成">平成时代</option>
+          <option value="令和">令和时代</option>
         </select>
         <label for="anime-checkbox">
-          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">Anime Character Name</span>
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">动漫角色名</span>
         </label>
         <label for="historical-checkbox">
-          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">Historical Figure Name</span>
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">历史人物名</span>
         </label>
-        <button id="generate">Generate Names</button>
-        <button id="generate-random">Generate Random Name</button>
+        <button id="generate">生成名字</button>
+        <button id="generate-random">生成随机名字</button>
+      </div>
+      <div id="generated-names" class="generated-names">
+        <ul id="name-list"></ul>
       </div>
     </section>
 
-    <section id="name-display">
-      <h3 id="generated-names-title">Generated Names:</h3>
-      <ul id="name-list"></ul>
+    <section id="weekly-popular-names" class="weekly-popular-names">
+      <h2>本周热门名字</h2>
+      <div class="popular-names-list">
+        <!-- 动态加载热门名字 -->
+      </div>
     </section>
 
-    <section id="about-japanese-names">
-      <h2>About Japanese Names</h2>
-      <p>Japanese names typically consist of a surname and a given name. The surname comes first, followed by the given name. Japanese names often carry deep cultural and historical significance, reflecting Japanese traditions and values.</p>
-      <h3>Characteristics of Japanese Names</h3>
-      <ul>
-        <li>Written using kanji (Chinese characters) and kana (hiragana or katakana)</li>
-        <li>Name meanings are often related to nature, virtues, or auspicious concepts</li>
-        <li>Naming trends vary across different historical periods</li>
-        <li>Surnames reflect family history and geographical origins</li>
-      </ul>
+    <section id="user-testimonials" class="user-testimonials">
+      <h2>用户评价</h2>
+      <div class="testimonial-slider">
+        <!-- 添加用户评价轮播 -->
+      </div>
     </section>
 
-    <section id="use-cases">
-      <h2>Uses for the Japanese Name Generator</h2>
-      <ul>
-        <li>Create authentic Japanese names for anime or manga characters</li>
-        <li>Name Japanese characters in novels or stories</li>
-        <li>Practice reading and writing Japanese names while learning the language</li>
-        <li>Understand Japanese culture and naming traditions</li>
+    <section id="features" class="features">
+      <h2>为什么选择我们的AI日本名字生成器？</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="fas fa-database"></i>
+          <h3>50000+名字库</h3>
+          <p>庞大的真实日本名字数据库</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-language"></i>
+          <h3>多种写法</h3>
+          <p>提供汉字、假名和罗马字写法</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-book"></i>
+          <h3>详细解释</h3>
+          <p>名字含义和文化背景解释</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-history"></i>
+          <h3>历史时期选择</h3>
+          <p>支持不同历史时期的名字生成</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tv"></i>
+          <h3>动漫角色名</h3>
+          <p>专门的动漫和历史人物名字选项</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync"></i>
+          <h3>定期更新</h3>
+          <p>每周更新新名字，保持与时俱进</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <h2>AI名字生成器如何工作？</h2>
+      <div class="process-steps">
+        <div class="step">
+          <i class="fas fa-cogs"></i>
+          <h3>1. 算法分析</h3>
+          <p>使用机器学习算法分析日本命名规则和趋势</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-user-cog"></i>
+          <h3>2. 个性化选择</h3>
+          <p>根据您的性别、时期和风格偏好进行筛选</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-magic"></i>
+          <h3>3. 智能组合</h3>
+          <p>从数据库中智能组合最合适的名字元素</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-check-circle"></i>
+          <h3>4. 结果呈现</h3>
+          <p>生成独特而有意义的日本名字及其解释</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="related-content" class="related-content">
+      <h2>相关内容</h2>
+      <div class="content-cards">
+        <div class="content-card" id="japanese-name-meanings">
+          <h3>日本名字的含义</h3>
+          <p>日本名字充满了含义和文化意义。例如：</p>
+          <ul>
+            <li><strong>Akira (明):</strong> "明亮"或"清晰"，通常给予有希望成为聪明和有洞察力的孩子。</li>
+            <li><strong>Hana (花):</strong> "花卉"，象征着美丽和优雅。</li>
+            <li><strong>Hiroshi (寛):</strong> "宽容"或"宽厚"，反映了期望的人格特质。</li>
+            <li><strong>Yuki (雪):</strong> "雪"，唤起了纯洁和美丽的感觉。</li>
+          </ul>
+          <p>名字往往由多个汉字组合而成，形成独特的含义，反映了父母对孩子的希望和价值观。</p>
+        </div>
+        <div class="content-card" id="japanese-naming-customs">
+          <h3>日本命名习俗</h3>
+          <p>日本的命名习俗随着时间的推移而演变：</p>
+          <ul>
+            <li><strong>历史上：</strong> 名字通常基于出生顺序或社会地位。</li>
+            <li><strong>现代：</strong> 父母根据含义、声音或家族传统选择名字。</li>
+            <li><strong>法律上：</strong> 日本有规定哪些汉字可以用于名字。</li>
+            <li><strong>趋势：</strong> 名字的流行随着社会变化和流行文化的影响而变化。</li>
+          </ul>
+          <p>有趣的是，一些日本人有一个"真名"（本名, honnmyou）用于法律文件，一个"通称"（通称, tsūshō）用于日常生活。</p>
+        </div>
+        <div class="content-card" id="popular-japanese-names">
+          <h3>流行的日本名字</h3>
+          <p>日本的流行名字反映了当前的趋势和价值观：</p>
+          <h4>近年男孩最流行的名字：</h4>
+          <ol>
+            <li>蓮 (Ren) - "莲花"</li>
+            <li>湊 (Minato) - "港湾"</li>
+            <li>陽翔 (Haruto) - "太阳, 飞翔"</li>
+          </ol>
+          <h4>近年女孩最流行的名字：</h4>
+          <ol>
+            <li>紬 (Tsumugi) - "绢"（一种丝绸）</li>
+            <li>凛 (Rin) - "严肃"</li>
+            <li>芽依 (Mei) - "芽, 依赖"</li>
+          </ol>
+          <p>这些名字往往结合了传统元素和现代美学，反映了日本的传承与进步。</p>
+        </div>
+        <div class="content-card" id="anime-character-names">
+          <h3>动漫角色名字</h3>
+          <p>动漫创作者经常使用巧妙的命名惯例：</p>
+          <ul>
+            <li><strong>象征性：</strong> 名字代表了角色的特质或故事主题。</li>
+            <li><strong>双关语：</strong> 在汉字中使用双关语或多重含义。</li>
+            <li><strong>文化参考：</strong> 名字受到历史人物或神话故事的启发。</li>
+          </ul>
+          <p>例如：</p>
+          <ul>
+            <li><strong>Light Yagami (夜神月):</strong> 来自死亡笔记，意为"夜神"和"月亮"，象征他对死亡的神一般的力量。</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> 来自海贼王，"Monkey"意为"猴子"，象征着玩fulness和敏捷。</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> 真名Usagi (うさぎ)，意为"兔子"，参考了东亚民间传说中的月亮兔子。</li>
+          </ul>
+          <p>这些有创意的名字为角色增添了深度，并经常为他们在故事中的角色或命运提供线索。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>常见问题</h2>
+      <dl>
+        <dt>Q: 生成的名字是否有文化意义？</dt>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="使用AI日本名字生成器创建真实的日本名字，包含汉字、罗马字和含义解释。50000+日本名字库，适用于动漫角色、小说创作、日语学习。每周更新新名字。">
+  <meta name="keywords" content="日本名字生成器, 动漫角色名字, 日本文化, 名字含义, 英文日本名字, 随机日本名字, 日本姓氏, AI名字生成">
+  <meta name="author" content="AI日本名字生成器">
+  <meta name="robots" content="index, follow">
+  <title>AI日本名字生成器 | 创建真实日本名字和动漫角色名 | 50000+名字库</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="alternate" hreflang="en" href="https://ai-names.app/en/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-names.app/ja/" />
+  <link rel="alternate" hreflang="zh" href="https://ai-names.app/" />
+  <link rel="canonical" href="https://ai-names.app/" />
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Error captured:", message, "in", source, "line", lineno);
+      alert("抱歉，发生了错误。请查看控制台以获取更多信息。");
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI日本名字生成器",
+    "url": "https://ai-names.app",
+    "description": "免费的AI日本名字生成器，提供50000+真实日本名字，包含汉字、罗马字和含义解释。适用于动漫角色、小说创作或日语学习。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "featureList": [
+      "生成真实日本名字",
+      "提供汉字和罗马字写法",
+      "解释名字含义",
+      "支持动漫角色名字生成",
+      "每周更新新名字"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="AI日本名字生成器" width="150" height="50">
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/about-japanese-names.html">关于日本名字</a></li>
+        <li><a href="/japanese-name-meanings.html">日本名字含义</a></li>
+        <li><a href="/anime-character-names.html">动漫角色名字</a></li>
       </ul>
+      <div id="language-switcher">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+      </div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1>AI日本名字生成器</h1>
+      <p>创建独特的日本名字，适用于个人使用、角色创作或动漫</p>
+      <a href="#name-generator" class="cta-button">开始生成名字</a>
+    </section>
+
+    <section id="name-generator" class="name-generator">
+      <h2>日本名字生成器</h2>
+      <div class="generator-controls">
+        <label for="gender" id="gender-label">选择性别：</label>
+        <select id="gender">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+        <label for="period" id="period-label">选择历史时期：</label>
+        <select id="period">
+          <option value="">随机时期</option>
+          <option value="平安">平安时代</option>
+          <option value="鎌倉">镰仓时代</option>
+          <option value="室町">室町时代</option>
+          <option value="戦国">战国时代</option>
+          <option value="江戸">江户时代</option>
+          <option value="明治">明治时代</option>
+          <option value="大正">大正时代</option>
+          <option value="昭和">昭和时代</option>
+          <option value="平成">平成时代</option>
+          <option value="令和">令和时代</option>
+        </select>
+        <label for="anime-checkbox">
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">动漫角色名</span>
+        </label>
+        <label for="historical-checkbox">
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">历史人物名</span>
+        </label>
+        <button id="generate">生成名字</button>
+        <button id="generate-random">生成随机名字</button>
+      </div>
+      <div id="generated-names" class="generated-names">
+        <ul id="name-list"></ul>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <h2>为什么选择我们的AI日本名字生成器？</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="fas fa-database"></i>
+          <h3>50000+名字库</h3>
+          <p>庞大的真实日本名字数据库</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-language"></i>
+          <h3>多种写法</h3>
+          <p>提供汉字、假名和罗马字写法</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-book"></i>
+          <h3>详细解释</h3>
+          <p>名字含义和文化背景解释</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-history"></i>
+          <h3>历史时期选择</h3>
+          <p>支持不同历史时期的名字生成</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tv"></i>
+          <h3>动漫角色名</h3>
+          <p>专门的动漫和历史人物名字选项</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync"></i>
+          <h3>定期更新</h3>
+          <p>每周更新新名字，保持与时俱进</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <h2>AI名字生成器如何工作？</h2>
+      <div class="process-steps">
+        <div class="step">
+          <i class="fas fa-cogs"></i>
+          <h3>1. 算法分析</h3>
+          <p>使用机器学习算法分析日本命名规则和趋势</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-user-cog"></i>
+          <h3>2. 个性化选择</h3>
+          <p>根据您的性别、时期和风格偏好进行筛选</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-magic"></i>
+          <h3>3. 智能组合</h3>
+          <p>从数据库中智能组合最合适的名字元素</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-check-circle"></i>
+          <h3>4. 结果呈现</h3>
+          <p>生成独特而有意义的日本名字及其解释</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="weekly-popular-names" class="weekly-popular-names">
+      <h2>本周热门名字</h2>
+      <div class="popular-names-list">
+        <!-- 动态加载热门名字 -->
+      </div>
+    </section>
+
+    <section id="user-testimonials" class="user-testimonials">
+      <h2>用户评价</h2>
+      <div class="testimonial-slider">
+        <!-- 添加用户评价轮播 -->
+      </div>
+    </section>
+
+    <section id="related-content" class="related-content">
+      <h2>相关内容</h2>
+      <div class="content-cards">
+        <div class="content-card" id="japanese-name-meanings">
+          <h3>日本名字的含义</h3>
+          <p>日本名字充满了含义和文化意义。例如：</p>
+          <ul>
+            <li><strong>Akira (明):</strong> "明亮"或"清晰"，通常给予有希望成为聪明和有洞察力的孩子。</li>
+            <li><strong>Hana (花):</strong> "花卉"，象征着美丽和优雅。</li>
+            <li><strong>Hiroshi (寛):</strong> "宽容"或"宽厚"，反映了期望的人格特质。</li>
+            <li><strong>Yuki (雪):</strong> "雪"，唤起了纯洁和美丽的感觉。</li>
+          </ul>
+          <p>名字往往由多个汉字组合而成，形成独特的含义，反映了父母对孩子的希望和价值观。</p>
+        </div>
+        <div class="content-card" id="japanese-naming-customs">
+          <h3>日本命名习俗</h3>
+          <p>日本的命名习俗随着时间的推移而演变：</p>
+          <ul>
+            <li><strong>历史上：</strong> 名字通常基于出生顺序或社会地位。</li>
+            <li><strong>现代：</strong> 父母根据含义、声音或家族传统选择名字。</li>
+            <li><strong>法律上：</strong> 日本有规定哪些汉字可以用于名字。</li>
+            <li><strong>趋势：</strong> 名字的流行随着社会变化和流行文化的影响而变化。</li>
+          </ul>
+          <p>有趣的是，一些日本人有一个"真名"（本名, honnmyou）用于法律文件，一个"通称"（通称, tsūshō）用于日常生活。</p>
+        </div>
+        <div class="content-card" id="popular-japanese-names">
+          <h3>流行的日本名字</h3>
+          <p>日本的流行名字反映了当前的趋势和价值观：</p>
+          <h4>近年男孩最流行的名字：</h4>
+          <ol>
+            <li>蓮 (Ren) - "莲花"</li>
+            <li>湊 (Minato) - "港湾"</li>
+            <li>陽翔 (Haruto) - "太阳, 飞翔"</li>
+          </ol>
+          <h4>近年女孩最流行的名字：</h4>
+          <ol>
+            <li>紬 (Tsumugi) - "绢"（一种丝绸）</li>
+            <li>凛 (Rin) - "严肃"</li>
+            <li>芽依 (Mei) - "芽, 依赖"</li>
+          </ol>
+          <p>这些名字往往结合了传统元素和现代美学，反映了日本的传承与进步。</p>
+        </div>
+        <div class="content-card" id="anime-character-names">
+          <h3>动漫角色名字</h3>
+          <p>动漫创作者经常使用巧妙的命名惯例：</p>
+          <ul>
+            <li><strong>象征性：</strong> 名字代表了角色的特质或故事主题。</li>
+            <li><strong>双关语：</strong> 在汉字中使用双关语或多重含义。</li>
+            <li><strong>文化参考：</strong> 名字受到历史人物或神话故事的启发。</li>
+          </ul>
+          <p>例如：</p>
+          <ul>
+            <li><strong>Light Yagami (夜神月):</strong> 来自死亡笔记，意为"夜神"和"月亮"，象征他对死亡的神一般的力量。</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> 来自海贼王，"Monkey"意为"猴子"，象征着玩fulness和敏捷。</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> 真名Usagi (うさぎ)，意为"兔子"，参考了东亚民间传说中的月亮兔子。</li>
+          </ul>
+          <p>这些有创意的名字为角色增添了深度，并经常为他们在故事中的角色或命运提供线索。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>常见问题</h2>
+      <dl>
+        <dt>Q: 生成的名字是否有文化意义？</dt>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="使用AI日本名字生成器创建真实的日本名字，包含汉字、罗马字和含义解释。50000+日本名字库，适用于动漫角色、小说创作、日语学习。每周更新新名字。">
+  <meta name="keywords" content="日本名字生成器, 动漫角色名字, 日本文化, 名字含义, 英文日本名字, 随机日本名字, 日本姓氏, AI名字生成">
+  <meta name="author" content="AI日本名字生成器">
+  <meta name="robots" content="index, follow">
+  <title>AI日本名字生成器 | 创建真实日本名字和动漫角色名 | 50000+名字库</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="alternate" hreflang="en" href="https://ai-names.app/en/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-names.app/ja/" />
+  <link rel="alternate" hreflang="zh" href="https://ai-names.app/" />
+  <link rel="canonical" href="https://ai-names.app/" />
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Error captured:", message, "in", source, "line", lineno);
+      alert("抱歉，发生了错误。请查看控制台以获取更多信息。");
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI日本名字生成器",
+    "url": "https://ai-names.app",
+    "description": "免费的AI日本名字生成器，提供50000+真实日本名字，包含汉字、罗马字和含义解释。适用于动漫角色、小说创作或日语学习。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "featureList": [
+      "生成真实日本名字",
+      "提供汉字和罗马字写法",
+      "解释名字含义",
+      "支持动漫角色名字生成",
+      "每周更新新名字"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="AI日本名字生成器" width="150" height="50">
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/about-japanese-names.html">关于日本名字</a></li>
+        <li><a href="/japanese-name-meanings.html">日本名字含义</a></li>
+        <li><a href="/anime-character-names.html">动漫角色名字</a></li>
+      </ul>
+      <div id="language-switcher">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+      </div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1>AI日本名字生成器</h1>
+      <p>创建独特的日本名字，适用于个人使用、角色创作或动漫</p>
+      <a href="#name-generator" class="cta-button">开始生成名字</a>
+    </section>
+
+    <section id="name-generator" class="name-generator">
+      <h2>日本名字生成器</h2>
+      <div class="generator-controls">
+        <label for="gender" id="gender-label">选择性别：</label>
+        <select id="gender">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+        <label for="period" id="period-label">选择历史时期：</label>
+        <select id="period">
+          <option value="">随机时期</option>
+          <option value="平安">平安时代</option>
+          <option value="鎌倉">镰仓时代</option>
+          <option value="室町">室町时代</option>
+          <option value="戦国">战国时代</option>
+          <option value="江戸">江户时代</option>
+          <option value="明治">明治时代</option>
+          <option value="大正">大正时代</option>
+          <option value="昭和">昭和时代</option>
+          <option value="平成">平成时代</option>
+          <option value="令和">令和时代</option>
+        </select>
+        <label for="anime-checkbox">
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">动漫角色名</span>
+        </label>
+        <label for="historical-checkbox">
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">历史人物名</span>
+        </label>
+        <button id="generate">生成名字</button>
+        <button id="generate-random">生成随机名字</button>
+      </div>
+      <div id="generated-names" class="generated-names">
+        <ul id="name-list"></ul>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <h2>为什么选择我们的AI日本名字生成器？</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="fas fa-database"></i>
+          <h3>50000+名字库</h3>
+          <p>庞大的真实日本名字数据库</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-language"></i>
+          <h3>多种写法</h3>
+          <p>提供汉字、假名和罗马字写法</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-book"></i>
+          <h3>详细解释</h3>
+          <p>名字含义和文化背景解释</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-history"></i>
+          <h3>历史时期选择</h3>
+          <p>支持不同历史时期的名字生成</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tv"></i>
+          <h3>动漫角色名</h3>
+          <p>专门的动漫和历史人物名字选项</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync"></i>
+          <h3>定期更新</h3>
+          <p>每周更新新名字，保持与时俱进</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <h2>AI名字生成器如何工作？</h2>
+      <div class="process-steps">
+        <div class="step">
+          <i class="fas fa-cogs"></i>
+          <h3>1. 算法分析</h3>
+          <p>使用机器学习算法分析日本命名规则和趋势</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-user-cog"></i>
+          <h3>2. 个性化选择</h3>
+          <p>根据您的性别、时期和风格偏好进行筛选</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-magic"></i>
+          <h3>3. 智能组合</h3>
+          <p>从数据库中智能组合最合适的名字元素</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-check-circle"></i>
+          <h3>4. 结果呈现</h3>
+          <p>生成独特而有意义的日本名字及其解释</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="weekly-popular-names" class="weekly-popular-names">
+      <h2>本周热门名字</h2>
+      <div class="popular-names-list">
+        <!-- 动态加载热门名字 -->
+      </div>
+    </section>
+
+    <section id="user-testimonials" class="user-testimonials">
+      <h2>用户评价</h2>
+      <div class="testimonial-slider">
+        <!-- 添加用户评价轮播 -->
+      </div>
+    </section>
+
+    <section id="related-content" class="related-content">
+      <h2>相关内容</h2>
+      <div class="content-cards">
+        <div class="content-card" id="japanese-name-meanings">
+          <h3>日本名字的含义</h3>
+          <p>日本名字充满了含义和文化意义。例如：</p>
+          <ul>
+            <li><strong>Akira (明):</strong> "明亮"或"清晰"，通常给予有希望成为聪明和有洞察力的孩子。</li>
+            <li><strong>Hana (花):</strong> "花卉"，象征着美丽和优雅。</li>
+            <li><strong>Hiroshi (寛):</strong> "宽容"或"宽厚"，反映了期望的人格特质。</li>
+            <li><strong>Yuki (雪):</strong> "雪"，唤起了纯洁和美丽的感觉。</li>
+          </ul>
+          <p>名字往往由多个汉字组合而成，形成独特的含义，反映了父母对孩子的希望和价值观。</p>
+        </div>
+        <div class="content-card" id="japanese-naming-customs">
+          <h3>日本命名习俗</h3>
+          <p>日本的命名习俗随着时间的推移而演变：</p>
+          <ul>
+            <li><strong>历史上：</strong> 名字通常基于出生顺序或社会地位。</li>
+            <li><strong>现代：</strong> 父母根据含义、声音或家族传统选择名字。</li>
+            <li><strong>法律上：</strong> 日本有规定哪些汉字可以用于名字。</li>
+            <li><strong>趋势：</strong> 名字的流行随着社会变化和流行文化的影响而变化。</li>
+          </ul>
+          <p>有趣的是，一些日本人有一个"真名"（本名, honnmyou）用于法律文件，一个"通称"（通称, tsūshō）用于日常生活。</p>
+        </div>
+        <div class="content-card" id="popular-japanese-names">
+          <h3>流行的日本名字</h3>
+          <p>日本的流行名字反映了当前的趋势和价值观：</p>
+          <h4>近年男孩最流行的名字：</h4>
+          <ol>
+            <li>蓮 (Ren) - "莲花"</li>
+            <li>湊 (Minato) - "港湾"</li>
+            <li>陽翔 (Haruto) - "太阳, 飞翔"</li>
+          </ol>
+          <h4>近年女孩最流行的名字：</h4>
+          <ol>
+            <li>紬 (Tsumugi) - "绢"（一种丝绸）</li>
+            <li>凛 (Rin) - "严肃"</li>
+            <li>芽依 (Mei) - "芽, 依赖"</li>
+          </ol>
+          <p>这些名字往往结合了传统元素和现代美学，反映了日本的传承与进步。</p>
+        </div>
+        <div class="content-card" id="anime-character-names">
+          <h3>动漫角色名字</h3>
+          <p>动漫创作者经常使用巧妙的命名惯例：</p>
+          <ul>
+            <li><strong>象征性：</strong> 名字代表了角色的特质或故事主题。</li>
+            <li><strong>双关语：</strong> 在汉字中使用双关语或多重含义。</li>
+            <li><strong>文化参考：</strong> 名字受到历史人物或神话故事的启发。</li>
+          </ul>
+          <p>例如：</p>
+          <ul>
+            <li><strong>Light Yagami (夜神月):</strong> 来自死亡笔记，意为"夜神"和"月亮"，象征他对死亡的神一般的力量。</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> 来自海贼王，"Monkey"意为"猴子"，象征着玩fulness和敏捷。</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> 真名Usagi (うさぎ)，意为"兔子"，参考了东亚民间传说中的月亮兔子。</li>
+          </ul>
+          <p>这些有创意的名字为角色增添了深度，并经常为他们在故事中的角色或命运提供线索。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>常见问题</h2>
+      <dl>
+        <dt>Q: 生成的名字是否有文化意义？</dt>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="使用AI日本名字生成器创建真实的日本名字，包含汉字、罗马字和含义解释。50000+日本名字库，适用于动漫角色、小说创作、日语学习。每周更新新名字。">
+  <meta name="keywords" content="日本名字生成器, 动漫角色名字, 日本文化, 名字含义, 英文日本名字, 随机日本名字, 日本姓氏, AI名字生成">
+  <meta name="author" content="AI日本名字生成器">
+  <meta name="robots" content="index, follow">
+  <title>AI日本名字生成器 | 创建真实日本名字和动漫角色名 | 50000+名字库</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="alternate" hreflang="en" href="https://ai-names.app/en/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-names.app/ja/" />
+  <link rel="alternate" hreflang="zh" href="https://ai-names.app/" />
+  <link rel="canonical" href="https://ai-names.app/" />
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Error captured:", message, "in", source, "line", lineno);
+      alert("抱歉，发生了错误。请查看控制台以获取更多信息。");
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI日本名字生成器",
+    "url": "https://ai-names.app",
+    "description": "免费的AI日本名字生成器，提供50000+真实日本名字，包含汉字、罗马字和含义解释。适用于动漫角色、小说创作或日语学习。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "featureList": [
+      "生成真实日本名字",
+      "提供汉字和罗马字写法",
+      "解释名字含义",
+      "支持动漫角色名字生成",
+      "每周更新新名字"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logo.png" alt="AI日本名字生成器">
+      </div>
+      <ul>
+        <li><a href="/">首页</a></li>
+        <li><a href="/about-japanese-names.html">关于日本名字</a></li>
+        <li><a href="/japanese-name-meanings.html">日本名字含义</a></li>
+        <li><a href="/anime-character-names.html">动漫角色名字</a></li>
+      </ul>
+      <div id="language-switcher">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>AI日本名字生成器</h1>
+      <p>创建独特的日本名字，适用于个人使用、角色创作或动漫</p>
+      <a href="#name-generator" class="cta-button">开始生成名字</a>
+    </section>
+
+    <section id="name-generator">
+      <h2>日本名字生成器</h2>
+      <div class="generator-controls">
+        <label for="gender" id="gender-label">选择性别：</label>
+        <select id="gender">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+        <label for="period" id="period-label">选择历史时期：</label>
+        <select id="period">
+          <option value="">随机时期</option>
+          <option value="平安">平安时代</option>
+          <option value="鎌倉">镰仓时代</option>
+          <option value="室町">室町时代</option>
+          <option value="戦国">战国时代</option>
+          <option value="江戸">江户时代</option>
+          <option value="明治">明治时代</option>
+          <option value="大正">大正时代</option>
+          <option value="昭和">昭和时代</option>
+          <option value="平成">平成时代</option>
+          <option value="令和">令和时代</option>
+        </select>
+        <label for="anime-checkbox">
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">动漫角色名</span>
+        </label>
+        <label for="historical-checkbox">
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">历史人物名</span>
+        </label>
+        <button id="generate">生成名字</button>
+        <button id="generate-random">生成随机名字</button>
+      </div>
+      <div id="generated-names">
+        <ul id="name-list"></ul>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>为什么选择我们的AI日本名字生成器？</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="fas fa-database"></i>
+          <h3>50000+名字库</h3>
+          <p>庞大的真实日本名字数据库</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-language"></i>
+          <h3>多种写法</h3>
+          <p>提供汉字、假名和罗马字写法</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-book"></i>
+          <h3>详细解释</h3>
+          <p>名字含义和文化背景解释</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-history"></i>
+          <h3>历史时期选择</h3>
+          <p>支持不同历史时期的名字生成</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tv"></i>
+          <h3>动漫角色名</h3>
+          <p>专门的动漫和历史人物名字选项</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync"></i>
+          <h3>定期更新</h3>
+          <p>每周更新新名字，保持与时俱进</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <h2>AI名字生成器如何工作？</h2>
+      <div class="process-steps">
+        <div class="step">
+          <i class="fas fa-cogs"></i>
+          <h3>1. 算法分析</h3>
+          <p>使用机器学习算法分析日本命名规则和趋势</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-user-cog"></i>
+          <h3>2. 个性化选择</h3>
+          <p>根据您的性别、时期和风格偏好进行筛选</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-magic"></i>
+          <h3>3. 智能组合</h3>
+          <p>从数据库中智能组合最合适的名字元素</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-check-circle"></i>
+          <h3>4. 结果呈现</h3>
+          <p>生成独特而有意义的日本名字及其解释</p>
+        </div>
+      </div>
     </section>
 
     <section id="related-content">
-      <h2>Related Content</h2>
+      <h2>相关内容</h2>
       <div class="content-cards">
         <div class="content-card" id="japanese-name-meanings">
-          <h3>Japanese Name Meanings</h3>
-          <p>Japanese names are rich with meaning and cultural significance. For example:</p>
+          <h3>日本名字的含义</h3>
+          <p>日本名字充满了含义和文化意义。例如：</p>
           <ul>
-            <li><strong>Akira (明):</strong> "Bright" or "Clear," often given to children hoped to be intelligent and insightful.</li>
-            <li><strong>Hana (花):</strong> "Flower," symbolizing beauty and delicacy.</li>
-            <li><strong>Hiroshi (寛):</strong> "Generous" or "Tolerant," reflecting desired personality traits.</li>
-            <li><strong>Yuki (雪):</strong> "Snow," evoking purity and beauty.</li>
+            <li><strong>Akira (明):</strong> "明亮"或"清晰"，通常给予有希望成为聪明和有洞察力的孩子。</li>
+            <li><strong>Hana (花):</strong> "花卉"，象征着美丽和优雅。</li>
+            <li><strong>Hiroshi (寛):</strong> "宽容"或"宽厚"，反映了期望的人格特质。</li>
+            <li><strong>Yuki (雪):</strong> "雪"，唤起了纯洁和美丽的感觉。</li>
           </ul>
-          <p>Names often combine multiple kanji to create unique meanings, reflecting parents' hopes and values for their children.</p>
+          <p>名字往往由多个汉字组合而成，形成独特的含义，反映了父母对孩子的希望和价值观。</p>
         </div>
         <div class="content-card" id="japanese-naming-customs">
-          <h3>Japanese Naming Customs</h3>
-          <p>Japanese naming customs have evolved over time:</p>
+          <h3>日本命名习俗</h3>
+          <p>日本的命名习俗随着时间的推移而演变：</p>
           <ul>
-            <li><strong>Historical:</strong> Names were often based on birth order or social status.</li>
-            <li><strong>Modern:</strong> Parents choose names based on meaning, sound, or family traditions.</li>
-            <li><strong>Legal:</strong> Japan has regulations on which kanji can be used in names.</li>
-            <li><strong>Trends:</strong> Name popularity changes with societal shifts and pop culture influences.</li>
+            <li><strong>历史上：</strong> 名字通常基于出生顺序或社会地位。</li>
+            <li><strong>现代：</strong> 父母根据含义、声音或家族传统选择名字。</li>
+            <li><strong>法律上：</strong> 日本有规定哪些汉字可以用于名字。</li>
+            <li><strong>趋势：</strong> 名字的流行随着社会变化和流行文化的影响而变化。</li>
           </ul>
-          <p>Interestingly, some Japanese people have a "true name" (本名, honnmyou) for legal documents and a "common name" (通称, tsūshō) for daily use.</p>
+          <p>有趣的是，一些日本人有一个"真名"（本名, honnmyou）用于法律文件，一个"通称"（通称, tsūshō）用于日常生活。</p>
         </div>
         <div class="content-card" id="popular-japanese-names">
-          <h3>Popular Japanese Names</h3>
-          <p>Popular names in Japan often reflect current trends and values:</p>
-          <h4>Top names for boys in recent years:</h4>
+          <h3>流行的日本名字</h3>
+          <p>日本的流行名字反映了当前的趋势和价值观：</p>
+          <h4>近年男孩最流行的名字：</h4>
           <ol>
-            <li>蓮 (Ren) - "Lotus"</li>
-            <li>湊 (Minato) - "Harbor"</li>
-            <li>陽翔 (Haruto) - "Sun, Flying"</li>
+            <li>蓮 (Ren) - "莲花"</li>
+            <li>湊 (Minato) - "港湾"</li>
+            <li>陽翔 (Haruto) - "太阳, 飞翔"</li>
           </ol>
-          <h4>Top names for girls in recent years:</h4>
+          <h4>近年女孩最流行的名字：</h4>
           <ol>
-            <li>紬 (Tsumugi) - "Pongee" (a type of silk)</li>
-            <li>凛 (Rin) - "Dignified"</li>
-            <li>芽依 (Mei) - "Sprout, Reliant"</li>
+            <li>紬 (Tsumugi) - "绢"（一种丝绸）</li>
+            <li>凛 (Rin) - "严肃"</li>
+            <li>芽依 (Mei) - "芽, 依赖"</li>
           </ol>
-          <p>These names often combine traditional elements with modern aesthetics, reflecting Japan's balance of heritage and progress.</p>
+          <p>这些名字往往结合了传统元素和现代美学，反映了日本的传承与进步。</p>
         </div>
         <div class="content-card" id="anime-character-names">
-          <h3>Anime Character Names</h3>
-          <p>Anime creators often use clever naming conventions:</p>
+          <h3>动漫角色名字</h3>
+          <p>动漫创作者经常使用巧妙的命名惯例：</p>
           <ul>
-            <li><strong>Symbolism:</strong> Names that represent character traits or story themes.</li>
-            <li><strong>Wordplay:</strong> Using puns or multiple meanings in kanji.</li>
-            <li><strong>Cultural References:</strong> Names inspired by historical figures or mythology.</li>
+            <li><strong>象征性：</strong> 名字代表了角色的特质或故事主题。</li>
+            <li><strong>双关语：</strong> 在汉字中使用双关语或多重含义。</li>
+            <li><strong>文化参考：</strong> 名字受到历史人物或神话故事的启发。</li>
           </ul>
-          <p>Examples:</p>
+          <p>例如：</p>
           <ul>
-            <li><strong>Light Yagami (夜神月):</strong> From Death Note, meaning "Night God" and "Moon," symbolizing his god-like power over death.</li>
-            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> From One Piece, with "Monkey" suggesting playfulness and agility.</li>
-            <li><strong>Sailor Moon (セーラームーン):</strong> Real name Usagi (うさぎ), meaning "rabbit," referencing the Moon Rabbit in East Asian folklore.</li>
+            <li><strong>Light Yagami (夜神月):</strong> 来自死亡笔记，意为"夜神"和"月亮"，象征他对死亡的神一般的力量。</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> 来自海贼王，"Monkey"意为"猴子"，象征着玩fulness和敏捷。</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> 真名Usagi (うさぎ)，意为"兔子"，参考了东亚民间传说中的月亮兔子。</li>
           </ul>
-          <p>These creative names add depth to characters and often provide clues about their roles or destinies in the story.</p>
+          <p>这些有创意的名字为角色增添了深度，并经常为他们在故事中的角色或命运提供线索。</p>
         </div>
       </div>
+    </section>
+
+    <section id="faq">
+      <h2>常见问题</h2>
+      <dl>
+        <dt>Q: 生成的名字是否有文化意义？</dt>
+        <dd>A: 是的，我们的AI系统会考虑日本文化和传统，确保生成的名字既有意义又符合文化背景。</dd>
+        
+        <dt>Q: 我可以使用这些名字作为我的笔名或角色名吗？</dt>
+        <dd>A: 当然可以！我们的名字生成器就是为创作者和爱好者设计的。不过，我们建议您在正式使用前进行一些额外的研究，以确保名字完全符合您的需求。</dd>
+        
+        <dt>Q: 名字生成器支持多少种语言？</dt>
+        <dd>A: 目前，我们的界面支持中文、英文和日文。生成的名字会同时提供日文（汉字和假名）以及罗马字拼写。</dd>
+      </dl>
+    </section>
+
+    <!-- 模态框 -->
+    <div id="name-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="name-details-title">名字详情</h3>
+        <p><span id="label-name-kanji">全名（汉字）: </span><span id="name-kanji"></span></p>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="使用AI日本名字生成器创建真实的日本名字，包含汉字、罗马字和含义解释。50000+日本名字库，适用于动漫角色、小说创作、日语学习。每周更新新名字。">
+  <meta name="keywords" content="日本名字生成器, 动漫角色名字, 日本文化, 名字含义, 英文日本名字, 随机日本名字, 日本姓氏, AI名字生成">
+  <meta name="author" content="AI日本名字生成器">
+  <meta name="robots" content="index, follow">
+  <title>AI日本名字生成器 | 创建真实日本名字和动漫角色名 | 50000+名字库</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="alternate" hreflang="en" href="https://ai-names.app/en/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-names.app/ja/" />
+  <link rel="alternate" hreflang="zh" href="https://ai-names.app/" />
+  <link rel="canonical" href="https://ai-names.app/" />
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Error captured:", message, "in", source, "line", lineno);
+      alert("抱歉，发生了错误。请查看控制台以获取更多信息。");
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI日本名字生成器",
+    "url": "https://ai-names.app",
+    "description": "免费的AI日本名字生成器，提供50000+真实日本名字，包含汉字、罗马字和含义解释。适用于动漫角色、小说创作或日语学习。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "featureList": [
+      "生成真实日本名字",
+      "提供汉字和罗马字写法",
+      "解释名字含义",
+      "支持动漫角色名字生成",
+      "每周更新新名字"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logo.png" alt="AI日本名字生成器">
+      </div>
+      <ul>
+        <li><a href="/">首页</a></li>
+        <li><a href="/about-japanese-names.html">关于日本名字</a></li>
+        <li><a href="/japanese-name-meanings.html">日本名字含义</a></li>
+        <li><a href="/anime-character-names.html">动漫角色名字</a></li>
+      </ul>
+      <div id="language-switcher">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>AI日本名字生成器</h1>
+      <p>创建独特的日本名字，适用于个人使用、角色创作或动漫</p>
+      <a href="#name-generator" class="cta-button">开始生成名字</a>
+    </section>
+
+    <section id="name-generator">
+      <h2>日本名字生成器</h2>
+      <div class="generator-controls">
+        <label for="gender" id="gender-label">选择性别：</label>
+        <select id="gender">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+        <label for="period" id="period-label">选择历史时期：</label>
+        <select id="period">
+          <option value="">随机时期</option>
+          <option value="平安">平安时代</option>
+          <option value="鎌倉">镰仓时代</option>
+          <option value="室町">室町时代</option>
+          <option value="戦国">战国时代</option>
+          <option value="江戸">江户时代</option>
+          <option value="明治">明治时代</option>
+          <option value="大正">大正时代</option>
+          <option value="昭和">昭和时代</option>
+          <option value="平成">平成时代</option>
+          <option value="令和">令和时代</option>
+        </select>
+        <label for="anime-checkbox">
+          <input type="checkbox" id="anime-checkbox"> <span id="anime-label">动漫角色名</span>
+        </label>
+        <label for="historical-checkbox">
+          <input type="checkbox" id="historical-checkbox"> <span id="historical-label">历史人物名</span>
+        </label>
+        <button id="generate">生成名字</button>
+        <button id="generate-random">生成随机名字</button>
+      </div>
+      <div id="generated-names">
+        <ul id="name-list"></ul>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>为什么选择我们的AI日本名字生成器？</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="fas fa-database"></i>
+          <h3>50000+名字库</h3>
+          <p>庞大的真实日本名字数据库</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-language"></i>
+          <h3>多种写法</h3>
+          <p>提供汉字、假名和罗马字写法</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-book"></i>
+          <h3>详细解释</h3>
+          <p>名字含义和文化背景解释</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-history"></i>
+          <h3>历史时期选择</h3>
+          <p>支持不同历史时期的名字生成</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tv"></i>
+          <h3>动漫角色名</h3>
+          <p>专门的动漫和历史人物名字选项</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-sync"></i>
+          <h3>定期更新</h3>
+          <p>每周更新新名字，保持与时俱进</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <h2>AI名字生成器如何工作？</h2>
+      <div class="process-steps">
+        <div class="step">
+          <i class="fas fa-cogs"></i>
+          <h3>1. 算法分析</h3>
+          <p>使用机器学习算法分析日本命名规则和趋势</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-user-cog"></i>
+          <h3>2. 个性化选择</h3>
+          <p>根据您的性别、时期和风格偏好进行筛选</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-magic"></i>
+          <h3>3. 智能组合</h3>
+          <p>从数据库中智能组合最合适的名字元素</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-check-circle"></i>
+          <h3>4. 结果呈现</h3>
+          <p>生成独特而有意义的日本名字及其解释</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="related-content">
+      <h2>相关内容</h2>
+      <div class="content-cards">
+        <div class="content-card" id="japanese-name-meanings">
+          <h3>日本名字的含义</h3>
+          <p>日本名字充满了含义和文化意义。例如：</p>
+          <ul>
+            <li><strong>Akira (明):</strong> "明亮"或"清晰"，通常给予有希望成为聪明和有洞察力的孩子。</li>
+            <li><strong>Hana (花):</strong> "花卉"，象征着美丽和优雅。</li>
+            <li><strong>Hiroshi (寛):</strong> "宽容"或"宽厚"，反映了期望的人格特质。</li>
+            <li><strong>Yuki (雪):</strong> "雪"，唤起了纯洁和美丽的感觉。</li>
+          </ul>
+          <p>名字往往由多个汉字组合而成，形成独特的含义，反映了父母对孩子的希望和价值观。</p>
+        </div>
+        <div class="content-card" id="japanese-naming-customs">
+          <h3>日本命名习俗</h3>
+          <p>日本的命名习俗随着时间的推移而演变：</p>
+          <ul>
+            <li><strong>历史上：</strong> 名字通常基于出生顺序或社会地位。</li>
+            <li><strong>现代：</strong> 父母根据含义、声音或家族传统选择名字。</li>
+            <li><strong>法律上：</strong> 日本有规定哪些汉字可以用于名字。</li>
+            <li><strong>趋势：</strong> 名字的流行随着社会变化和流行文化的影响而变化。</li>
+          </ul>
+          <p>有趣的是，一些日本人有一个"真名"（本名, honnmyou）用于法律文件，一个"通称"（通称, tsūshō）用于日常生活。</p>
+        </div>
+        <div class="content-card" id="popular-japanese-names">
+          <h3>流行的日本名字</h3>
+          <p>日本的流行名字反映了当前的趋势和价值观：</p>
+          <h4>近年男孩最流行的名字：</h4>
+          <ol>
+            <li>蓮 (Ren) - "莲花"</li>
+            <li>湊 (Minato) - "港湾"</li>
+            <li>陽翔 (Haruto) - "太阳, 飞翔"</li>
+          </ol>
+          <h4>近年女孩最流行的名字：</h4>
+          <ol>
+            <li>紬 (Tsumugi) - "绢"（一种丝绸）</li>
+            <li>凛 (Rin) - "严肃"</li>
+            <li>芽依 (Mei) - "芽, 依赖"</li>
+          </ol>
+          <p>这些名字往往结合了传统元素和现代美学，反映了日本的传承与进步。</p>
+        </div>
+        <div class="content-card" id="anime-character-names">
+          <h3>动漫角色名字</h3>
+          <p>动漫创作者经常使用巧妙的命名惯例：</p>
+          <ul>
+            <li><strong>象征性：</strong> 名字代表了角色的特质或故事主题。</li>
+            <li><strong>双关语：</strong> 在汉字中使用双关语或多重含义。</li>
+            <li><strong>文化参考：</strong> 名字受到历史人物或神话故事的启发。</li>
+          </ul>
+          <p>例如：</p>
+          <ul>
+            <li><strong>Light Yagami (夜神月):</strong> 来自死亡笔记，意为"夜神"和"月亮"，象征他对死亡的神一般的力量。</li>
+            <li><strong>Monkey D. Luffy (モンキー・D・ルフィ):</strong> 来自海贼王，"Monkey"意为"猴子"，象征着玩fulness和敏捷。</li>
+            <li><strong>Sailor Moon (セーラームーン):</strong> 真名Usagi (うさぎ)，意为"兔子"，参考了东亚民间传说中的月亮兔子。</li>
+          </ul>
+          <p>这些有创意的名字为角色增添了深度，并经常为他们在故事中的角色或命运提供线索。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>常见问题</h2>
+      <dl>
+        <dt>Q: 生成的名字是否有文化意义？</dt>
+        <dd>A: 是的，我们的AI系统会考虑日本文化和传统，确保生成的名字既有意义又符合文化背景。</dd>
+        
+        <dt>Q: 我可以使用这些名字作为我的笔名或角色名吗？</dt>
+        <dd>A: 当然可以！我们的名字生成器就是为创作者和爱好者设计的。不过，我们建议您在正式使用前进行一些额外的研究，以确保名字完全符合您的需求。</dd>
+        
+        <dt>Q: 名字生成器支持多少种语言？</dt>
+        <dd>A: 目前，我们的界面支持中文、英文和日文。生成的名字会同时提供日文（汉字和假名）以及罗马字拼写。</dd>
+      </dl>
     </section>
 
     <!-- 模态框 -->
@@ -182,7 +1274,14 @@
   </main>
 
   <footer>
-    <p>© 2023 AI Japanese Name Generator. All rights reserved.</p>
+    <p>© 2023 AI日本名字生成器。保留所有权利。</p>
+    <div class="social-share">
+      <button onclick="shareFacebook()">分享到Facebook</button>
+      <button onclick="shareTwitter()">分享到Twitter</button>
+    </div>
+    <div class="user-feedback">
+      <a href="/feedback">提供反馈</a>
+    </div>
   </footer>
 
   <script src="script.js" crossorigin="anonymous"></script>
